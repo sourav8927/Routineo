@@ -3,7 +3,9 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import FullRoutine from './Table/FullRoutine'
-import NewRoutine from './New Rourine/NewRoutine'
+import NewRoutine from './NewRourine.jsx/NewRoutine'
+import ClassRoutine from './ClassRoutine/ClassRoutine'
+
 
 function App() {
   const [count, setCount] = useState(0)
@@ -36,6 +38,8 @@ function App() {
     <>
     <NewRoutine onAddRoutine={handleAddRoutine}/>
       <FullRoutine/>
+      <ClassRoutine/>
+      
     </>
   )
 }
