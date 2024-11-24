@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "express": "^4.21.1",
+    "mongoose": "^8.8.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "routineo-server",
+  "version": "1.0.0",
+  "main": "Server.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
