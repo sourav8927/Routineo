@@ -631,7 +631,7 @@ const FullRoutine = () => {
   const classes = allClasses[selectedSemester] || []; // Display classes for selected semester
 
   return (
-    <div className="p-4 bg-gray-50 min-h-screen">
+    <div className="p-4  min-h-screen">
       {/* Header Section */}
       <h1 className="text-3xl font-bold text-center mb-4 text-blue-600">
         SEMESTER SYLLABUS

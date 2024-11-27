@@ -6,7 +6,9 @@ import TeacherRegistration from '../Registration/TeacherRegistration';
 import CRRegistration from '../Registration/CRRegistration';
 import App from '../App';
 import NewRoutine from '../NewRourine.jsx/NewRoutine';
-// import ClassRoutine from '../ClassRoutine.jsx/ClassRoutinee';
+import ClassRoutine from '../ClassRoutine/ClassRoutine';
+import FullRoutine from '../Table/FullRoutine';
+;
 
 // Define the routes
 const router = createBrowserRouter([
@@ -34,14 +36,14 @@ const router = createBrowserRouter([
         path: "/newroutine",
         element: <NewRoutine/>,  
       },
-      // {
-      //   path: "/classroutine",
-      //   element: <ClassRoutine/>,  
-      // },
-      // {
-      //   path: "/fullroutine",
-      //   element: <FullRoutine/>,  
-      // },
+      {
+        path: "/classroutine",
+        element: <ClassRoutine/>,  
+      },
+      {
+        path: "/fullroutine",
+        element: <FullRoutine/>,  
+      },
     ],
   },
 ]);
