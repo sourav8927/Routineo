@@ -8,7 +8,7 @@ import App from '../App';
 import NewRoutine from '../NewRourine.jsx/NewRoutine';
 import ClassRoutine from '../ClassRoutine/ClassRoutine';
 import FullRoutine from '../Table/FullRoutine';
-;
+import AttendanceSheet from '../AttendanceSheet/AttendanceSheet';
 
 // Define the routes
 const router = createBrowserRouter([
@@ -44,6 +44,10 @@ const router = createBrowserRouter([
         path: "/fullroutine",
         element: <FullRoutine/>,  
       },
+      {
+        path: "/attendanesheet",
+        element: <AttendanceSheet/>,
+      }
     ],
   },
 ]);
