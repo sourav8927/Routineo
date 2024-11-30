@@ -108,7 +108,7 @@ const ClassRoutine = () => {
       </div>
 
       {selectedClass && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="fixed top-0 left-0 w-full h-full  flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-4/5 md:w-1/3">
             <h2 className="text-lg font-bold mb-4">Edit Class</h2>
             <label className="block mb-2 text-sm font-medium text-gray-600">

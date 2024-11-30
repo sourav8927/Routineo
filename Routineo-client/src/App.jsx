@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './Components/Navbar'
 import { Outlet } from 'react-router-dom'
+import FullScreenWrapper from './Components/FullScreenWrapper'
 
 
 function App() {
@@ -35,8 +36,10 @@ function App() {
   // };
   return (
     <>
+    <FullScreenWrapper>
      <Navbar/>
      <Outlet/>
+     </FullScreenWrapper>
     </>
   )
 }

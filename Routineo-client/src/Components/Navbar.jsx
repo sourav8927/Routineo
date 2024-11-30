@@ -74,8 +74,13 @@ export default function Navbar() {
               </button>
             </div>
             <ul className="py-4">
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Home</li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">About</li>
+              <Link to="/"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Home</li></Link>
+              <Link to="/attendanesheet"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attendance Sheet</li></Link>
+              <Link to="/fullroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Semester Syllabus</li></Link>
+              <Link to="/classroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Class routine</li></Link>
+              <Link to="/newroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">New routine</li></Link>
+              <Link to="/newroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">All Faculties</li></Link>
+              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">About us</li>
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Contact</li>
               <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Help</li>
             </ul>

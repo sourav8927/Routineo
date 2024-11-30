@@ -6,7 +6,7 @@ export default function Home() {
   const [attendance, setAttendance] = useState({});
 
   return (
-    <div className="bg-secondary min-h-screen bg-[#edffff] relative">
+    <div className="bg-secondary min-h-screen  relative">
       
 
       {/* Hero Section */}
