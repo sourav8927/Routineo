@@ -9,6 +9,10 @@ import NewRoutine from '../NewRourine.jsx/NewRoutine';
 import ClassRoutine from '../ClassRoutine/ClassRoutine';
 import FullRoutine from '../Table/FullRoutine';
 import AttendanceSheet from '../AttendanceSheet/AttendanceSheet';
+import FacultyMembers from '../FacultyMembers';
+import AboutUs from '../AboutUs';
+import Contact from '../Contact';
+import Help from '../Help';
 
 // Define the routes
 const router = createBrowserRouter([
@@ -51,6 +55,22 @@ const router = createBrowserRouter([
       {
         path: "/attendanesheet",
         element: <AttendanceSheet/>,
+      },
+      {
+        path: "/facultymembers",
+        element: <FacultyMembers/>,
+      },
+      {
+        path: "/aboutus",
+        element: <AboutUs/>,
+      },
+      {
+        path: "/contact",
+        element: <Contact/>,
+      },
+      {
+        path: "/help",
+        element: <Help/>,
       }
     ],
   },

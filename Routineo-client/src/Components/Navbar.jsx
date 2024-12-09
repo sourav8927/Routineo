@@ -80,10 +80,10 @@ export default function Navbar() {
               <Link to="/fullroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Semester Syllabus</li></Link>
               <Link to="/classroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Class routine</li></Link>
               <Link to="/newroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">New routine</li></Link>
-              <Link to="/newroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">All Faculties</li></Link>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">About us</li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Contact</li>
-              <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Help</li>
+              <Link to="/facultymembers"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Faculty Members</li></Link>
+              <Link to="/aboutus"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">About us</li></Link>
+              <Link to="/contact"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Contact</li></Link>
+              <Link to="/help"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Help</li></Link>
             </ul>
           </motion.div>
         </div>
