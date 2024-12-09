@@ -17,8 +17,9 @@ export default function Navbar() {
 
   return (
     <>
+    
       {/* Header */}
-      <header className="bg-primary text-white py-4 bg-[#017f7e]">
+      <header className=" text-white py-4 bg-[#00626d]">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4">
           {/* Sidebar Toggle */}
           <div className="flex items-center gap-4">

@@ -60,7 +60,7 @@ const NewRoutine = ({ onAddRoutine }) => {
 
   return (
     <div className="p-4  min-h-screen">
-      <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">
+      <h2 className="text-2xl font-bold text-center mb-4 text-blue-400">
         Add New Semester Routine
       </h2>
       <form
@@ -182,7 +182,7 @@ const NewRoutine = ({ onAddRoutine }) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
+          className="w-full bg-blue-400 text-white py-2 rounded-md hover:bg-blue-500 transition"
         >
           Add Routine
         </button>

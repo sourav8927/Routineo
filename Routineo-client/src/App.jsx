@@ -38,7 +38,9 @@ function App() {
     <>
     <FullScreenWrapper>
      <Navbar/>
+     <div id="root" class="">
      <Outlet/>
+     </div>
      </FullScreenWrapper>
     </>
   )

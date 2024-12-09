@@ -20,6 +20,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,  // Home component renders here
       },
+      // {
+      //   path: "/loader",
+      //   element:<HashLoader />,
+      // },
       {
         path: "/studentregistration",
         element: <StudentRegistration />,  // Student registration page

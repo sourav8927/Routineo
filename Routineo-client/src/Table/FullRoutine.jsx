@@ -633,7 +633,7 @@ const FullRoutine = () => {
   return (
     <div className="p-4  min-h-screen">
       {/* Header Section */}
-      <h1 className="text-3xl font-bold text-center mb-4 text-blue-600">
+      <h1 className="text-3xl font-bold text-center mb-4 text-blue-400">
         SEMESTER SYLLABUS
       </h1>
       <h2 className="text-xl text-center text-gray-700 mb-6">

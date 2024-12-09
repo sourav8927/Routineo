@@ -18,7 +18,8 @@ const AttendanceSheet = () => {
   };
 
   return (
-    <div className="font-sans bg-orange-50 p-6 rounded-lg w-4/5 mx-auto mt-10 shadow-lg">
+    <div className='items-center justify-center'>
+    <div className="font-sans bg-orange-50 p-6 rounded-lg w-4/5 mx-auto  shadow-lg  m-auto">
       <h1 className="text-2xl font-bold text-center text-orange-800 mb-6">
         Class Attendance
       </h1>
@@ -94,6 +95,7 @@ const AttendanceSheet = () => {
       >
         Add Student
       </button>
+    </div>
     </div>
   );
 };

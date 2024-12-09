@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Hides horizontal and vertical scrollbars */
+html, body {
+    margin: 0;
+    padding: 0;
+    
+  }
+  
+  /* Ensure content fits within the viewport */
+  body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  

@@ -1,4 +1,9 @@
-#root{
-  background-color: #edffff;
-  height:900px;
+#root {
+  background: url('/images/banner.jpg') no-repeat center center;
+  background-size: cover;
+  height: 100vh; /* Makes the div height equal to the viewport height */
+  width: 100vw; /* Ensures it spans the full viewport width */
+  margin: 0; /* Resets any margin that could cause scrolling issues */
+  padding: 0;
+  
 }
