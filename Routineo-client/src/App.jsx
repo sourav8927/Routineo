@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './Components/Navbar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useNavigate } from 'react-router-dom'
 import FullScreenWrapper from './Components/FullScreenWrapper'
+import GoogleCaptcha from './Components/GoogleCaptcha'
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const navigate= useNavigate();
   // const [routines, setRoutines] = useState([
   //   // Default static routines from the original RoutinePage component
   //   {
@@ -34,12 +36,14 @@ function App() {
   // const handleAddRoutine = (newRoutine) => {
   //   setRoutines([...routines, newRoutine]); // Append the new routine
   // };
+  
   return (
     <>
     <FullScreenWrapper>
      <Navbar/>
      <div id="root" class="">
-     <Outlet/>
+      <Outlet/>
+     
      </div>
      </FullScreenWrapper>
     </>

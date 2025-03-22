@@ -1,4 +1,6 @@
-import { createContext, useContext,useState,useEffect } from "react";
+ import { createContext, useContext,useState,useEffect } from "react";
+
+//import { Children, createContext } from "react";
 
 export const AuthContext=createContext();
 
@@ -16,7 +18,7 @@ export const AuthProvider=({children})=>{
     const LogOutUser=()=>{
         settoken("")
         setuser("")
-        return localStorage.removeItem("token")
+        return localStorage.removeItem("token");
     }
 //it check the token is present or not
     let isLoggedIn=!!token;
@@ -71,3 +73,14 @@ export const useAuth=()=>{
     }
     return authContextValue;
 }
+
+// export const AuthContext=createContext();
+
+// export const AuthProvider=({children})=>{
+//      const StoreToken=(serverToken)=>{
+//         return localStorage.setItem("Token",serverToken);
+//     }
+//     return <AuthContext.Provider value={{StoreToken}}> 
+//         {children}
+//     </AuthContext.Provider>
+// }

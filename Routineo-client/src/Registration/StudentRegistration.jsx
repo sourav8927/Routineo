@@ -1,25 +1,55 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/Auth";
 
 export default function StudentRegistration() {
   const [formData, setFormData] = useState({
-    name: "",
-    universityRoll: "",
-    universityRegNumber: "",
+    username: "",
+    roll: "",
+    registrationNo: "",
     phone: "",
     email: "",
     password: "",
-    currentYear: "",
+    currentyear: "",
     semester: "",
     department: "",
   });
-
+ const {storeTokenInLs}=useAuth();
+  const navigate=useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     console.log("Student Registration Data:", formData);
+    try {
+      const registerURL= "http://localhost:5000/api/auth/registration";
+      const response= await fetch(registerURL,{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData), // Send corrected User object
+      });
+      const res_data = await response.json();
+      console.log("response data", res_data);
+      if (response.ok) {
+        //toast.success("Registration successful!");
+        storeTokenInLs(res_data.token);
+        alert("successful");
+        navigate("/otpverification");
+      } else {
+        //toast.error(
+        //  res_data.extraDetails ? res_data.extraDetails : res_data.message
+        //);
+        alert("not successful");
+      }
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -28,25 +58,31 @@ export default function StudentRegistration() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="name"
+          name="username"
           placeholder="Name"
+          id="username"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.username}
           onChange={handleChange}
           required
         />
         <input
           type="text"
-          name="universityRoll"
+          name="roll"
           placeholder="University Roll"
+          id="roll"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.roll}
           onChange={handleChange}
           required
         />
         <input
           type="text"
-          name="universityRegNumber"
+          name="registrationNo"
           placeholder="University Registration Number"
+          id="registrationNo"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.registrationNo}
           onChange={handleChange}
           required
         />
@@ -54,7 +90,9 @@ export default function StudentRegistration() {
           type="text"
           name="phone"
           placeholder="Phone Number"
+          id="phone"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.phone}
           onChange={handleChange}
           required
         />
@@ -62,7 +100,9 @@ export default function StudentRegistration() {
           type="email"
           name="email"
           placeholder="Email"
+          id="email"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.email}
           onChange={handleChange}
           required
         />
@@ -70,15 +110,19 @@ export default function StudentRegistration() {
           type="password"
           name="password"
           placeholder="Password"
+          id="password"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.password}
           onChange={handleChange}
           required
         />
         <input
           type="text"
-          name="currentYear"
+          name="currentyear"
           placeholder="Current Year"
+          id="currentyear"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.currentyear}
           onChange={handleChange}
           required
         />
@@ -86,7 +130,9 @@ export default function StudentRegistration() {
           type="text"
           name="semester"
           placeholder="Semester"
+          id="semester"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.semester}
           onChange={handleChange}
           required
         />
@@ -94,7 +140,9 @@ export default function StudentRegistration() {
           type="text"
           name="department"
           placeholder="Department"
+          id="department"
           className="w-full mb-3 p-2 border rounded"
+          value={formData.department}
           onChange={handleChange}
           required
         />
@@ -104,9 +152,9 @@ export default function StudentRegistration() {
       </form>
       <p className="text-center mt-4">
         Already registered?{" "}
-        <a href="/login" className="text-blue-500 hover:underline">
+        <Link href="/login" className="text-blue-500 hover:underline">
           Login
-        </a>
+        </Link>
       </p>
     </div>
   );
