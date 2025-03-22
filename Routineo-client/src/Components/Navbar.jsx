@@ -2,13 +2,24 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { useAuth } from "../store/Auth";
+
 
 export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [regDropdown, setRegDropdown] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-
+  const {isLoggedIn}=useAuth();
+  let isStudent=true;
   const handleLoginClick = () => {
-    setShowDropdown(!showDropdown);
+    if(!regDropdown){
+      setShowDropdown(!showDropdown);
+    }
+  };
+  const handleRegistrationClick = () => {
+    if(!showDropdown){
+      setRegDropdown(!regDropdown);
+    }
   };
 
   const handleMenuClick = () => {
@@ -29,6 +40,11 @@ export default function Navbar() {
             />
             <h1 className="text-3xl font-bold">Routineo</h1>
           </div>
+          <div className="flex">
+
+          {isLoggedIn ? <li><Link to="/logout">Logout</Link></li>:
+          <>
+          
           {/* Login Button with Dropdown */}
           <div className="relative">
             <button
@@ -38,6 +54,30 @@ export default function Navbar() {
               Login
             </button>
             {showDropdown && (
+              <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg z-10">
+                <ul className="py-2 text-center">
+                 <Link  to="/studentlogin"> <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[#04c5c4]">
+                    Student
+                  </li></Link>
+                  <Link  to="/teacherlogin" ><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[#04c5c4]">
+                    Teacher
+                  </li></Link>
+                  <Link  to="/crlogin" ><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[#04c5c4]">
+                    CR
+                  </li></Link>
+                </ul>
+              </div>
+            )}
+          </div>
+          {/* Registration Button with Dropdown */}
+          <div className="relative">
+            <button
+              className="bg-accent py-2 px-4 rounded-lg bg-green-700 "
+              onClick={handleRegistrationClick}
+            >
+              Registration
+            </button>
+            {regDropdown && (
               <div className="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-lg z-10">
                 <ul className="py-2 text-center">
                  <Link  to="/studentregistration"> <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-[#04c5c4]">
@@ -52,6 +92,9 @@ export default function Navbar() {
                 </ul>
               </div>
             )}
+          </div>
+          </>
+          }
           </div>
         </div>
       </header>
@@ -74,6 +117,18 @@ export default function Navbar() {
                 ×
               </button>
             </div>
+            {isStudent? 
+              <ul className="py-4">
+              <Link to="/"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Home</li></Link>
+              <Link to="/attendanesheet"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attended classes</li></Link>
+              <Link to="/fullroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Semester Syllabus</li></Link>
+              <Link to="/classroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Class routine</li></Link>
+              <Link to="/newroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer"></li></Link>
+              <Link to="/facultymembers"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Faculty Members</li></Link>
+              <Link to="/aboutus"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">About us</li></Link>
+              <Link to="/contact"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Contact</li></Link>
+              <Link to="/help"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Help</li></Link>
+            </ul>:
             <ul className="py-4">
               <Link to="/"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Home</li></Link>
               <Link to="/attendanesheet"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attendance Sheet</li></Link>
@@ -85,6 +140,8 @@ export default function Navbar() {
               <Link to="/contact"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Contact</li></Link>
               <Link to="/help"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Help</li></Link>
             </ul>
+            }
+            
           </motion.div>
         </div>
       )}
