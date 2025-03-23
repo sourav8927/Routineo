@@ -19,6 +19,7 @@ import OTPVerification from "../Components/OTPVerification";
 import ForgotPassword from "../Components/ForgotPassword";
 import ResetPassword from "../Components/ResetPassword";
 import Logout from "../Components/Logout";
+import UploadStudents from "../UploadStudents/UploadStudents";
 
 // Define the routes
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       //   path: "/loader",
       //   element:<HashLoader />,
       // },
+      {
+        path: "/uploadstudents",
+        element: <UploadStudents/>, // Home component renders here
+      },
       {
         path: "/studentregistration",
         element: <StudentRegistration />, // Student registration page

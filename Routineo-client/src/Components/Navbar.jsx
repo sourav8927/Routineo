@@ -10,7 +10,7 @@ export default function Navbar() {
   const [regDropdown, setRegDropdown] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
   const {isLoggedIn}=useAuth();
-  let isStudent=true;
+  let isStudent=false;
   const handleLoginClick = () => {
     if(!regDropdown){
       setShowDropdown(!showDropdown);
@@ -131,6 +131,7 @@ export default function Navbar() {
             </ul>:
             <ul className="py-4">
               <Link to="/"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Home</li></Link>
+              <Link to="/uploadstudents"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Upload students</li></Link>
               <Link to="/attendanesheet"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attendance Sheet</li></Link>
               <Link to="/fullroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Semester Syllabus</li></Link>
               <Link to="/classroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Class routine</li></Link>
