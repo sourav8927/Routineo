@@ -6,7 +6,6 @@ import { AiFillFileText } from "react-icons/ai";
 
 // Constants for AttendanceSheet
 const YEARS = ["1st Year", "2nd Year", "3rd Year", "4th Year"];
-const BRANCHES = ["CSE", "ECE", "ME", "EE", "IT"];
 const SEMESTERS = Array.from(
   { length: 8 },
   (_, i) => `${i + 1}${getSuffix(i + 1)} Semester`
@@ -653,10 +652,24 @@ function ClassAttendance() {
   const [subject, setSubject] = useState("");
   const [year, setYear] = useState("1st Year");
   const [branch, setBranch] = useState("CSE");
+  // Set initial semester based on first year (first two semesters)
   const [semester, setSemester] = useState("1st Semester");
   const [isLoading, setIsLoading] = useState(false);
   const [currentDate] = useState(format(new Date(), "yyyy-MM-dd"));
   const [availableSubjects, setAvailableSubjects] = useState([]);
+
+  // Compute filtered semesters based on selected year
+  const yearIndex = YEARS.indexOf(year);
+  const filteredSemesters = SEMESTERS.slice(yearIndex * 2, yearIndex * 2 + 2);
+
+  // When year changes, update semester to the first option in the filtered list.
+  const handleYearChange = (e) => {
+    const selectedYear = e.target.value;
+    setYear(selectedYear);
+    const newYearIndex = YEARS.indexOf(selectedYear);
+    const newSemester = SEMESTERS.slice(newYearIndex * 2, newYearIndex * 2 + 2)[0];
+    setSemester(newSemester);
+  };
 
   // Update availableSubjects whenever semester changes
   useEffect(() => {
@@ -752,7 +765,7 @@ function ClassAttendance() {
               <select
                 className="px-3 py-2 text-gray-700 bg-white rounded-md"
                 value={year}
-                onChange={(e) => setYear(e.target.value)}
+                onChange={handleYearChange}
               >
                 {YEARS.map((y) => (
                   <option key={y} value={y}>
@@ -765,7 +778,7 @@ function ClassAttendance() {
                 value={branch}
                 onChange={(e) => setBranch(e.target.value)}
               >
-                {BRANCHES.map((b) => (
+                {["CSE", "ECE", "ME", "EE", "IT"].map((b) => (
                   <option key={b} value={b}>
                     {b}
                   </option>
@@ -776,7 +789,7 @@ function ClassAttendance() {
                 value={semester}
                 onChange={(e) => setSemester(e.target.value)}
               >
-                {SEMESTERS.map((s) => (
+                {filteredSemesters.map((s) => (
                   <option key={s} value={s}>
                     {s}
                   </option>
