@@ -132,7 +132,7 @@ export default function Navbar() {
             <ul className="py-4">
               <Link to="/"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Home</li></Link>
               <Link to="/uploadstudents"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Upload students</li></Link>
-              <Link to="/attendanesheet"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attendance Sheet</li></Link>
+              <Link to="/classattendance"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Attendance Sheet</li></Link>
               <Link to="/fullroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Semester Syllabus</li></Link>
               <Link to="/classroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">Class routine</li></Link>
               <Link to="/newroutine"><li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">New routine</li></Link>
