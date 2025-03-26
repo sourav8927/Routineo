@@ -8,7 +8,7 @@ import App from "../App";
 import NewRoutine from "../NewRourine.jsx/NewRoutine";
 import ClassRoutine from "../ClassRoutine/ClassRoutine";
 import FullRoutine from "../Table/FullRoutine";
-import AttendanceSheet from "../AttendanceSheet/AttendanceSheet";
+import ClassAttendance from "../ClassAttendance/ClassAttendance";
 import FacultyMembers from "../FacultyMembers";
 import AboutUs from "../AboutUs";
 import Contact from "../Contact";
@@ -88,8 +88,8 @@ const router = createBrowserRouter([
         element: <FullRoutine />,
       },
       {
-        path: "/attendanesheet",
-        element: <AttendanceSheet />,
+        path: "/classattendance",
+        element: <ClassAttendance />,
       },
       {
         path: "/facultymembers",
