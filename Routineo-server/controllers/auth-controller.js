@@ -12,30 +12,30 @@ const home=async(req,res)=>{
         console.log(error);
     }
 }
-//student registration & login
-const registration=async(req,res)=>{
-    try {
-        console.log("register",req.body);
-        const {username,roll,registrationNo,phone,email,password,currentyear,semester,department}=req.body;
+//student registration 
+// const registration=async(req,res)=>{
+//     try {
+//         console.log("register",req.body);
+//         const {username,roll,registrationNo,phone,email,password,currentyear,semester,department}=req.body;
 
-        const userExist=await User.findOne({email});
+//         const userExist=await User.findOne({email});
 
-        if(userExist){
-            return res.status(400).json({messege:"Email already exist"});
-        }
+//         if(userExist){
+//             return res.status(400).json({messege:"Email already exist"});
+//         }
 
-        const verificationCode= Math.floor(100000+Math.random()*900000).toString();
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
-        const userCreated=await User.create({
-            username,roll,registrationNo,phone,email,password:hashedPassword,currentyear,semester,department,verificationCode
-        });
-        SendVerificationCode(userCreated.email,verificationCode);
-        return res.status(201).json({msg:"Registration successfully",token:await userCreated.generateToken(),userId:userCreated._id.toString()});
-    } catch (error) {
-        res.status(500).json({msg:"Internal server error"});
-    }
-}
+//         const verificationCode= Math.floor(100000+Math.random()*900000).toString();
+//         const salt = await bcrypt.genSalt(10);
+//         const hashedPassword = await bcrypt.hash(password, salt);
+//         const userCreated=await User.create({
+//             username,roll,registrationNo,phone,email,password:hashedPassword,currentyear,semester,department,verificationCode
+//         });
+//         SendVerificationCode(userCreated.email,verificationCode);
+//         return res.status(201).json({msg:"Registration successfully",token:await userCreated.generateToken(),userId:userCreated._id.toString()});
+//     } catch (error) {
+//         res.status(500).json({msg:"Internal server error"});
+//     }
+// }
 //student email verification 
 const verifyemail=async(req,res)=>{
     try {
@@ -56,6 +56,64 @@ const verifyemail=async(req,res)=>{
         res.status(500).json({msg:"Internal server error"});
     }
 }
+//new registration
+const registration = async (req, res) => {
+    try {
+        console.log("register", req.body);
+        const { username, roll, registrationNo, phone, email, password, currentyear, semester, department } = req.body;
+
+        // Check if Email, Roll, or Registration Number already exists in registered users
+        const userExist = await User.findOne({ $or: [{ email }, { roll }] });
+        if (userExist) {
+            return res.status(400).json({ message: "Email, Roll, or Registration Number already registered!" });
+        }
+
+        // Check if the provided roll and registration number match an uploaded student record
+        const uploadedStudent = await UploadedStudent.findOne({ roll });
+
+        if (!uploadedStudent) {
+            return res.status(400).json({ message: "Invalid Roll or Registration Number. No matching student record found!" });
+        }
+
+        // Check if the provided name matches the uploaded student data
+        if (uploadedStudent.name.toLowerCase() !== username.toLowerCase()) {
+            return res.status(400).json({ message: "Name does not match with the registered student record!" });
+        }
+
+        // Generate Verification Code
+        const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Register User
+        const userCreated = await User.create({
+            username,
+            roll,
+            registrationNo,
+            phone,
+            email,
+            password: hashedPassword,
+            currentyear,
+            semester,
+            department,
+            verificationCode
+        });
+
+        // Send Verification Code
+        SendVerificationCode(userCreated.email, verificationCode);
+
+        return res.status(201).json({ 
+            message: "Registration successful", 
+            token: await userCreated.generateToken(), 
+            userId: userCreated._id.toString() 
+        });
+
+    } catch (error) {
+        console.error("Error during registration:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
 // const login= async(req,res)=>{
 //     try {
 //         const {email,password}=req.body;
@@ -206,5 +264,28 @@ const resetPassword = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
+const getStudentDetails = async (req, res) => {
+    try {
+        const userId = req.user.id; // Extract user ID from JWT token
+        const student = await User.findById(userId);
 
-module.exports={home,registration,login,teacherRegistration,teacherLogin,verifyemail,forgotPassword,resetPassword}
+        if (!student) {
+            return res.status(404).json({ message: "Student not found!" });
+        }
+
+        // Fetch uploaded student data based on Roll and Registration Number  //future addtion -> registrationNo: student.registrationNo
+        const studentData = await UploadedStudent.findOne({ name:student.name });
+
+        if (!studentData) {
+            return res.status(404).json({ message: "No academic data found!" });
+        }
+
+        return res.status(200).json({ student, studentData });
+    } catch (error) {
+        console.error("Error fetching student details:", error);
+        return res.status(500).json({ message: "Server error" });
+    }
+};
+
+
+module.exports={home,registration,login,teacherRegistration,teacherLogin,verifyemail,forgotPassword,resetPassword,getStudentDetails}

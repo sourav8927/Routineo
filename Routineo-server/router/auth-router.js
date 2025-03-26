@@ -15,4 +15,5 @@ router.route("/teacherRegistration").post(authcontroller.teacherRegistration);
 router.route("/teacherLogin").post(authcontroller.teacherLogin);
 router.route("/forgotPassword").post(authcontroller.forgotPassword);
 router.route("/resetPassword/:token").post(authcontroller.resetPassword);
+router.route("/getStudentDetails").get(authcontroller.getStudentDetails)
 module.exports= router;
