@@ -91,7 +91,7 @@ const UploadStudents = () => {
   };
 
   return (
-    <div className="bg-gray-100 py-10 w-7xl h-full mx-auto">
+    <div className="bg-[#e7fcf9] py-10 w-7xl h-full mx-auto">
       <div className="max-w-6xl mx-auto p-6 bg-white shadow-lg rounded-lg">
         {/* Sticky Navbar */}
         <div className="sticky top-0 bg-teal-600 text-white py-3 px-6 flex flex-wrap justify-between items-center shadow-md z-50">
