@@ -101,7 +101,7 @@ const DailyReportDataDisplay = ({ data }) => {
           <tr>
             <th className="px-4 py-2 border-b">Date</th>
             <th className="px-4 py-2 border-b">Teacher</th>
-            <th className="px-4 py-2 border-b">Class</th>
+            <th className="px-4 py-2 border-b">Paper Code</th>
             <th className="px-4 py-2 border-b">Subject</th>
             <th className="px-4 py-2 border-b">Present</th>
             <th className="px-4 py-2 border-b">Absent</th>
@@ -115,7 +115,7 @@ const DailyReportDataDisplay = ({ data }) => {
             <tr key={idx} className="text-center">
               <td className="px-4 py-2 border-b">{item.date}</td>
               <td className="px-4 py-2 border-b">{item.teacher}</td>
-              <td className="px-4 py-2 border-b">{item.class}</td>
+              <td className="px-4 py-2 border-b">{item.paperCode}</td>
               <td className="px-4 py-2 border-b">{item.subject}</td>
               <td className="px-4 py-2 border-b">{item.presentCount}</td>
               <td className="px-4 py-2 border-b">{item.absentCount}</td>
@@ -202,7 +202,7 @@ const MonthlyReportDataDisplay = ({ data }) => {
           <tr>
             <th className="px-4 py-2 border-b">Month</th>
             <th className="px-4 py-2 border-b">Teacher</th>
-            <th className="px-4 py-2 border-b">Class</th>
+            <th className="px-4 py-2 border-b">Paper Code</th>
             <th className="px-4 py-2 border-b">Subject</th>
             <th className="px-4 py-2 border-b">Present</th>
             <th className="px-4 py-2 border-b">Absent</th>
@@ -216,7 +216,7 @@ const MonthlyReportDataDisplay = ({ data }) => {
             <tr key={idx} className="text-center">
               <td className="px-4 py-2 border-b">{item.month}</td>
               <td className="px-4 py-2 border-b">{item.teacher}</td>
-              <td className="px-4 py-2 border-b">{item.class}</td>
+              <td className="px-4 py-2 border-b">{item.paperCode}</td>
               <td className="px-4 py-2 border-b">{item.subject}</td>
               <td className="px-4 py-2 border-b">{item.presentCount}</td>
               <td className="px-4 py-2 border-b">{item.absentCount}</td>
