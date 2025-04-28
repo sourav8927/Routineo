@@ -3,6 +3,7 @@ const router=express.Router();
 const authcontroller=require("../controllers/auth-controller");
 const signupSchema=require("../validators/auth-validators");
 const validate=require("../middlewares/validate-middleware");
+const authMiddleware=require("../middlewares/auth-middleware");
 
 router.route("/").get(authcontroller.home);
 // router.get("/register",(req,res)=>{
@@ -15,5 +16,6 @@ router.route("/teacherRegistration").post(authcontroller.teacherRegistration);
 router.route("/teacherLogin").post(authcontroller.teacherLogin);
 router.route("/forgotPassword").post(authcontroller.forgotPassword);
 router.route("/resetPassword/:token").post(authcontroller.resetPassword);
-router.route("/getStudentDetails").get(authcontroller.getStudentDetails)
+// router.route("/getStudentDetails").get(authcontroller.getStudentDetails) // get user data from here
+router.route("/user").get(authMiddleware,authcontroller.user);
 module.exports= router;

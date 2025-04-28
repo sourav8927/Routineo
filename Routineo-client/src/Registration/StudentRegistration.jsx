@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
+import { toast } from 'react-toastify';
 
 export default function StudentRegistration() {
   const [formData, setFormData] = useState({
@@ -36,15 +37,18 @@ export default function StudentRegistration() {
       const res_data = await response.json();
       console.log("response data", res_data);
       if (response.ok) {
-        //toast.success("Registration successful!");
+        toast.success("Registration successful!");
         storeTokenInLs(res_data.token);
-        alert("successful");
+        //alert("successful");
         navigate("/otpverification");
+        toast.info("Please check your Email For a 6-digit OTP")
       } else {
-        //toast.error(
-        //  res_data.extraDetails ? res_data.extraDetails : res_data.message
-        //);
         alert("not successful");
+        toast.warning("Roll Should be ex:2021-3045 format"),
+        toast.error(
+         res_data.extraDetails ? res_data.extraDetails : res_data.message
+        );
+
       }
       console.log(response);
     } catch (error) {

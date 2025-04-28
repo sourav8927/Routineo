@@ -1,5 +1,6 @@
 const User=require("../models/user-model");
 const Teacher=require("../models/teacher-model");
+const UploadedStudent=require("../models/uploadStudents-model");
 const jwt= require("jsonwebtoken");
 const {SendVerificationCode,WelcomeEmail, sendPasswordResetEmail, sendResetSuccessEmail}=require("../middlewares/Email");
 const crypto = require("crypto");
@@ -264,28 +265,38 @@ const resetPassword = async (req, res) => {
         res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
-const getStudentDetails = async (req, res) => {
+// const getStudentDetails = async (req, res) => {
+//     try {
+//         const userId = req.user.id; // Extract user ID from JWT token
+//         const student = await User.findById(userId);
+
+//         if (!student) {
+//             return res.status(404).json({ message: "Student not found!" });
+//         }
+
+//         // Fetch uploaded student data based on Roll and Registration Number  //future addtion -> registrationNo: student.registrationNo
+//         const studentData = await UploadedStudent.findOne({ name:student.name });
+
+//         if (!studentData) {
+//             return res.status(404).json({ message: "No academic data found!" });
+//         }
+
+//         return res.status(200).json({ student, studentData });
+//     } catch (error) {
+//         console.error("Error fetching student details:", error);
+//         return res.status(500).json({ message: "Server error" });
+//     }
+// };
+
+// get USER 
+const user=async(req,res)=>{
     try {
-        const userId = req.user.id; // Extract user ID from JWT token
-        const student = await User.findById(userId);
-
-        if (!student) {
-            return res.status(404).json({ message: "Student not found!" });
-        }
-
-        // Fetch uploaded student data based on Roll and Registration Number  //future addtion -> registrationNo: student.registrationNo
-        const studentData = await UploadedStudent.findOne({ name:student.name });
-
-        if (!studentData) {
-            return res.status(404).json({ message: "No academic data found!" });
-        }
-
-        return res.status(200).json({ student, studentData });
+        const userData=req.user;
+        console.log(`user data from User controller ${userData}`);
+        return res.status(200).json({msg:userData});
     } catch (error) {
-        console.error("Error fetching student details:", error);
-        return res.status(500).json({ message: "Server error" });
+        console(`Error from User route ${error}`);
     }
-};
+}
 
-
-module.exports={home,registration,login,teacherRegistration,teacherLogin,verifyemail,forgotPassword,resetPassword,getStudentDetails}
+module.exports={home,registration,login,teacherRegistration,teacherLogin,verifyemail,forgotPassword,resetPassword,user}

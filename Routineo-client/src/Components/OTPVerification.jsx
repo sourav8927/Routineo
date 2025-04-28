@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 export default function OTPVerification() {
   const [otp, setOtp] = useState(new Array(6).fill(""));
@@ -36,7 +37,7 @@ export default function OTPVerification() {
 
       if (response.ok) {
         setMessage("OTP Verified Successfully!");
-        alert("Verification successful!");
+        toast.success("Verification successful!");
         navigate("/");
       } else {
         setMessage("Invalid OTP. Please try again.");

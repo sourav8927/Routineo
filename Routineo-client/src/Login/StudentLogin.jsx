@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { GoogleReCaptchaProvider, GoogleReCaptchaCheckbox } from '@google-recaptcha/react';
 import GoogleCaptcha from "../Components/GoogleCaptcha";
 import { AuthContext, useAuth } from "../store/Auth";
+import { toast } from 'react-toastify';
 
 export default function StudentLogin() {
   const [loginData, setLoginData] = useState({
@@ -36,17 +37,17 @@ export default function StudentLogin() {
         const res_data = await response.json();
         storeTokenInLs(res_data.token);
         console.log("Response data:", res_data);
-        alert("Login successful!");
+        toast.success("Login successful!");
         // Navigate to the dashboard or home page
         navigate("/");
       } else {
         const errorText = await response.text();
         console.error("Error:", errorText);
-        alert("Invalid email or password. Please try again.");
+        toast.error("Invalid email or password. Please try again.");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while logging in.");
+      toast.error("An error occurred while logging in.");
     }
   };
 
