@@ -20,6 +20,7 @@ import ForgotPassword from "../Components/ForgotPassword";
 import ResetPassword from "../Components/ResetPassword";
 import Logout from "../Components/Logout";
 import UploadStudents from "../UploadStudents/UploadStudents";
+import ClassReport from "../ClassReport/ClassReport";
 
 // Define the routes
 const router = createBrowserRouter([
@@ -90,6 +91,10 @@ const router = createBrowserRouter([
       {
         path: "/classattendance",
         element: <ClassAttendance />,
+      },
+      {
+        path: "/classreport",
+        element: <ClassReport />,
       },
       {
         path: "/facultymembers",
